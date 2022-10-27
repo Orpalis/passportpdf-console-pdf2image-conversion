@@ -39,7 +39,7 @@ namespace PdfConversion
             {
                 string savePath = Path.Join(Directory.GetCurrentDirectory(), "converted_doc.png");
 
-                var fileStream = new FileStream(savePath, FileMode.Create, FileAccess.Write);
+                var fileStream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.Write);
 
                 await pdfApi.SaveAsPNGFileAsync(new PdfSaveAsPNGParameters(document.FileId) { PageRange = "1" }, fileStream);
 
@@ -47,7 +47,7 @@ namespace PdfConversion
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Could not save stream to JPEG file! Error : {0}", ex);
+                Console.WriteLine("Could not save stream to JPEG file! Error : {0}", ex.Message);
             }
 
             Console.WriteLine("Convert and save document as a JPEG...");
@@ -56,7 +56,7 @@ namespace PdfConversion
             {
                 string savePath = Path.Join(Directory.GetCurrentDirectory(), "converted_doc.jpeg");
 
-                var fileStream = new FileStream(savePath, FileMode.Create, FileAccess.Write);
+                var fileStream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.Write);
 
                 await pdfApi.SaveAsJPEGFileAsync(new PdfSaveAsJPEGParameters(document.FileId) { PageRange = "1"}, fileStream);
 
@@ -64,7 +64,7 @@ namespace PdfConversion
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Could not save stream to JPEG file! Error : {0}", ex);
+                Console.WriteLine("Could not save stream to JPEG file! Error : {0}", ex.Message);
             }
 
             Console.WriteLine("Convert and save document as a TIFF...");
@@ -73,7 +73,7 @@ namespace PdfConversion
             {
                 string savePath = Path.Join(Directory.GetCurrentDirectory(), "converted_doc.tiff");
 
-                var fileStream = new FileStream(savePath, FileMode.Create, FileAccess.Write);
+                var fileStream = new FileStream(savePath, FileMode.OpenOrCreate, FileAccess.Write);
 
                 await pdfApi.SaveAsTIFFFileAsync(new PdfSaveAsTIFFParameters(document.FileId) { PageRange = "1" }, fileStream);
 
@@ -81,7 +81,7 @@ namespace PdfConversion
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Could not save stream to TIFF file! Error : {0}", ex);
+                Console.WriteLine("Could not save stream to TIFF file! Error : {0}", ex.Message);
             }
         }
     }
